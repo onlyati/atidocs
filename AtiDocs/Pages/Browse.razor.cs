@@ -1,9 +1,12 @@
 ﻿using AtiDocs.DataModel;
+using Markdig;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ToastNotify.Model;
 
 namespace AtiDocs.Pages
 {
@@ -22,11 +25,10 @@ namespace AtiDocs.Pages
             if (folderSlug != null && articleSlug != null)
             {
                 content = await DbHandler.GetArticle(folderSlug, articleSlug);
-                contentHtml = Markdig.Markdown.ToHtml(content.Content);
+                var pipe = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+                contentHtml = Markdown.ToHtml(content.Content, pipe);
                 StateHasChanged();
             }
         }
-
-
     }
 }

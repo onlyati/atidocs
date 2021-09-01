@@ -11,9 +11,10 @@ namespace AtiDocs.DataModel
         public string DbPath = "";
         public DbFunction()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            DbPath = $"atidocs.db";
+            var folder = Environment.SpecialFolder.CommonApplicationData;
+            var path = $"{Environment.GetFolderPath(folder)}/atidocs";
+            System.IO.Directory.CreateDirectory(path);
+            DbPath = $"{path}/atidocs.db";
         }
 
         public virtual DbSet<Article> Articles { get; set; }

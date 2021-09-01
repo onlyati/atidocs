@@ -210,6 +210,9 @@ ol {
     resize: vertical;
     width: 100%;
     min-height: 400px;
+    font-family: monospace;
+    font-weight: 100;
+    white-space: nowrap;
 }
 
 .write-folder-select {
