@@ -3,6 +3,11 @@
     --------------
 */
 
+code {
+    background-color: #f5f5f5;
+    font-weight: normal;
+}
+
 /* Lists */
 ul,
 ol {
@@ -220,3 +225,19 @@ ol {
     padding: 10px 15px;
     margin-left: 5px;
 }
+
+.browse-site-content h2 {
+    margin-top: 40px;
+}
+
+    .browse-site-content h2:hover:after {
+        margin-left: 24px;
+    }
+
+    .browse-site-content h2::after {
+        content: "";
+        display: block;
+        width: auto;
+        height: 1px;
+        background-color: #04009A;
+    }
