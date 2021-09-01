@@ -1,0 +1,219 @@
+/*
+    Reusable items
+    --------------
+*/
+
+/* Lists */
+ul,
+ol {
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+/* Inline links */
+.inline-link,
+.inline-link:link,
+.inline-link:active,
+.inline-link:visited,
+.inline-link:hover {
+    cursor: pointer;
+    font-weight: 100;
+    border: 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+    .inline-link::after {
+        visibility: hidden;
+    }
+
+.inline-link-info,
+.inline-link-info:link,
+.inline-link-info:active,
+.inline-link-info:visited,
+.inline-link-info:hover {
+    color: rgb(0,97,0);
+}
+
+    .inline-link-info:hover {
+        background-color: rgb(198,239,206);
+    }
+
+.inline-link-warning,
+.inline-link-warning:link,
+.inline-link-warning:active,
+.inline-link-warning:visited,
+.inline-link-warning:hover {
+    color: rgb(156,87,0);
+}
+
+    .inline-link-warning:hover {
+        background-color: rgb(255,235,156);
+    }
+
+.inline-link-verify,
+.inline-link-verify:link,
+.inline-link-verify:active,
+.inline-link-verify:visited,
+.inline-link-verify:hover {
+    color: #D8000C;
+}
+
+    .inline-link-verify:hover {
+        background-color: #FFD2D2;
+    }
+
+.list-box-title {
+    display: inline;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Text with symbols */
+.show-folder-icon::before {
+    content: " ";
+    display: inline-block;
+    background-image: url("../icons/folder_icon.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-y: 3px;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.show-doc-icon::before {
+    content: " ";
+    display: inline-block;
+    background-image: url("../icons/document_icon.png");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position-y: 6px;
+    height: 20px;
+    width: 20px;
+    margin-right: 0px;
+}
+
+/* Faded background */
+.background-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.85;
+}
+
+/*
+    Edit folder styles
+    ------------------
+*/
+.fix-box {
+    position: absolute;
+    z-index: 1050;
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: fix-box-coming 0.15s linear;
+}
+
+/* Animation for fix-box */
+@-webkit-keyframes fix-box-coming {
+    0% { top: -60px; }
+    100% { top: 60px; }
+}
+
+@-moz-keyframes fix-box-coming {
+    0% { top: -60px; }
+    100% { top: 60px; }
+}
+
+@-o-keyframes fix-box-coming {
+    0% { top: -60px; }
+    100% { top: 60px; }
+}
+
+@keyframes fix-box-coming {
+    0% { top: -60px; }
+    100% { top: 60px; }
+}
+
+/* Own form customization */
+.form-cust-box {
+    width: 450px;
+}
+
+.add-folder-box {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.add-folder-submit {
+    display: inline-block;
+}
+
+.add-folder-name {
+    display: inline-block;
+    width: 100%;
+}
+
+    .add-folder-name input {
+        width: 100%;
+    }
+
+    .folder-list-box h2 {
+        display: inline-block;
+        margin-right: 0;
+    } 
+
+.folder-list-box-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.document-list-box-item {
+    margin-left: 55px;
+    cursor: pointer;
+}
+
+.btn-cust-add {
+    display: inline-block;
+}
+
+/*
+    Write document styles
+    ---------------------
+*/
+
+.form-write-cust {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 0;
+    background-color: transparent;
+}
+
+.form-write-cust-row {
+    width: 100%;
+}
+
+.form-write-cust-row input {
+    width: 100%;
+}
+
+.write-content {
+    resize: vertical;
+    width: 100%;
+    min-height: 400px;
+}
+
+.write-folder-select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-left: 5px;
+}

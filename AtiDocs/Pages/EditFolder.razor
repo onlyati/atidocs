@@ -1,0 +1,108 @@
+﻿@page "/"
+@page "/e"
+
+@if (ShowAdd)
+{
+    <div class="background-fade"></div>
+    <div class="fix-box">
+        <div class="form-box form-cust-box">
+            <EditForm Model="@addFolder" OnSubmit="AddNewFolder">
+                <div class="form-row add-folder-name">
+                    <InputText @bind-Value="addFolder.Name" placeholder="Folder name"></InputText>
+                </div>
+                <div class="form-row add-folder-submit">
+                    @if (ShowMode == PopuMode.Add)
+                    {
+                        <button class="btn btn-submit" type="submit">Add folder</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-submit" type="submit">Rename folder</button>
+                    }
+                    <button class="btn btn-verify" type="button" @onclick="() => ShowAdd = false">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@if (ShowMove)
+{
+    <div class="background-fade"></div>
+    <div class="fix-box">
+        <div class="form-box form-cust-box">
+            <EditForm Model="@moveModel" OnSubmit="MoveDoc">
+                <div class="form-row add-folder-name">
+                    <InputSelect @bind-Value="moveModel.NewSlug" class="write-folder-select">
+                        <option value="">Select...</option>
+                        @foreach (var item in FolderList)
+                            {
+                            <option value="@item.Folder.Slug">@item.Folder.Name</option>
+                            }
+                    </InputSelect>
+                </div>
+                <div class="form-row add-folder-submit">
+                    <button class="btn btn-submit" type="submit">Move doc</button>
+                    <button class="btn btn-verify" type="button" @onclick="() => ShowMove = false">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@if (ShowRename)
+{
+    <div class="background-fade"></div>
+    <div class="fix-box">
+        <div class="form-box form-cust-box">
+            <EditForm Model="@renameModel" OnSubmit="RenameDoc">
+                <div class="form-row add-folder-name">
+                    <InputText @bind-Value="renameModel.NewTitle" placeholder="Title"></InputText>
+                </div>
+                <div class="form-row add-folder-submit">
+                    <button class="btn btn-submit" type="submit">Rename doc</button>
+                    <button class="btn btn-verify" type="button" @onclick="() => ShowRename = false">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div class="folder-list-box">
+    <div>
+        <h2>Manage docs</h2>
+        <button class="btn btn-info btn-cust-add" @onclick="() => DisplayPopup(PopuMode.Add, null, null)">Add Folder</button>
+    </div>
+    @if (FolderList != null)
+    {
+        @foreach (var item in FolderList)
+        {
+            <p class="show-folder-icon folder-list-box-item" @onmouseover="() => item.Display = true" @onmouseout="() => item.Display = false">
+            <p @onclick="() => LoadArticles(item)" class="list-box-title">@item.Folder.Name</p>
+            @if (item.Display)
+            {
+                <a class="inline-link inline-link-info" @onclick="() => DisplayPopup(PopuMode.Rename, item.Folder.Name, item.Folder.Slug)">Rename</a>
+                <a class="inline-link inline-link-verify" @onclick="() => DeleteFolder(item.Folder.Slug)">Delete</a>
+            }
+            </p>
+            @if (item.DisplayDocs == true)
+            {
+                <p class="document-list-box-item"><i>Total number of documents: @item.ArticleList.Count</i></p>
+                @foreach (var article in item.ArticleList)
+                {
+                    <p class="show-doc-icon document-list-box-item" @onmouseover="() => article.Display = true" @onmouseout="() => article.Display = false">
+                    <p @onclick="() => OpenArticle(item.Folder.Slug, article.Article.Slug)" class="list-box-title">@article.Article.Title</p>
+                    @if (article.Display)
+                    {
+                        <a class="inline-link inline-link-info" @onclick="() => EditArticle(item.Folder.Slug, article.Article.Slug)">Edit</a>
+                        <a class="inline-link inline-link-info" @onclick="() => DisplayMove(item.Folder.Slug, article.Article.Slug)">Move</a>
+                        <a class="inline-link inline-link-info" @onclick="() => DisplayRename(item.Folder.Slug, article.Article.Slug)">Rename</a>
+                        <a class="inline-link inline-link-verify" @onclick="() => DeleteDoc(item.Folder.Slug, article.Article.Slug)">Delete</a>
+                    }
+                    </p>
+                }
+            }
+        }
+    }
+</div>
+

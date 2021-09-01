@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+
+<header>
+    <navbar class="navbar">
+        <p class="navbar-title">Ati Services - AtiDocs</p>
+        <ul class="navbar-menu">
+            <li><a href="/e">Management</a></li>
+            <li><a href="/w">Create</a></li>
+            <li><a href="/a">About it</a></li>
+        </ul>
+    </navbar>
+</header>
+<section class="main-content">
+    @Body
+</section>
+
+<ToastNotifyView ToastController="@ToastController" />

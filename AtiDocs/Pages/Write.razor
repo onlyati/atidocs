@@ -1,0 +1,48 @@
+﻿@page "/w"
+@page "/w/{folderSlug}/{articleSlug}"
+
+<h2>Write document</h2>
+
+<div class="form-box form-write-cust">
+    <EditForm Model="@addArticle" OnSubmit="CreateDoc">
+        <div class="form-row form-write-cust-row">
+            @if (pageMode == Mode.Create)
+            {
+                <InputText @bind-Value="addArticle.Title" placeholder="Document title"></InputText>
+            }
+            else
+            {
+                <InputText @bind-Value="addArticle.Title" placeholder="Document title" disabled></InputText>
+            }
+        </div>
+        <div class="form-row form-write-cust-row">
+            @if (pageMode == Mode.Create)
+            {
+                <InputSelect @bind-Value="addArticle.FolderSlug" class="write-folder-select">
+                    <option value="">Select...</option>
+                    @foreach (var item in Folders)
+                        {
+                        <option value="@item.Slug">@item.Name</option>
+                        }
+                </InputSelect>
+            }
+            else
+            {
+                <InputSelect @bind-Value="addArticle.FolderSlug" class="write-folder-select" disabled></InputSelect>
+            }
+        </div>
+        <div class="form-row form-write-cust-row">
+            <InputTextArea @bind-Value="addArticle.Content" class="write-content"></InputTextArea>
+        </div>
+        <div class="form-row add-folder-submit">
+            @if (pageMode == Mode.Create)
+            {
+                <button class="btn btn-submit" type="submit">Create article</button>
+            }
+            else
+            {
+                <button class="btn btn-submit" type="submit">Change article</button>
+            }
+        </div>
+    </EditForm>
+</div>
