@@ -89,7 +89,7 @@ namespace AtiDocs.Pages
                 ContentPartItem addItem = new ContentPartItem() { Content = "", ElementReference = Guid.NewGuid().ToString() };
                 ContentParts.Insert(ContentParts.IndexOf(item) + 1, addItem);
 
-                SetFocus(item);
+                SetFocus(addItem);
             }
 
             if(e.Key == "Backspace" && (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text)))
