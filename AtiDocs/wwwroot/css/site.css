@@ -226,6 +226,28 @@ ol {
     margin-left: 5px;
 }
 
+.placeholder-text {
+    color: #dedede;
+}
+
+    .placeholder-text:focus {
+        color: inherit;
+    }
+
+.edit-element {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    width: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 12px;
+    white-space: pre;
+}
+
+/*
+    Browse site style
+    -----------------
+*/
 .browse-site-content h2 {
     margin-top: 40px;
 }

@@ -19,8 +19,4 @@
     <PackageReference Include="OnlyAti.Blazor.ToastNotify" Version="0.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>

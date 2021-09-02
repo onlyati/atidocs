@@ -1,48 +1,37 @@
 ﻿@page "/w"
 @page "/w/{folderSlug}/{articleSlug}"
 
-<h2>Write document</h2>
+@if (string.IsNullOrEmpty(DocTitle) || string.IsNullOrWhiteSpace(DocTitle))
+{
+    <h1 contenteditable="true" id="write-doc-title" class="placeholder-text" onclick="javascript:ClearText(this.id)" @onfocusout="SaveTitle">Write title here</h1>
+}
+else
+{
+    <h1 contenteditable="true" id="write-doc-title" @onfocusout="SaveTitle">@DocTitle</h1>
+}
 
-<div class="form-box form-write-cust">
-    <EditForm Model="@addArticle" OnSubmit="CreateDoc">
-        <div class="form-row form-write-cust-row">
-            @if (pageMode == Mode.Create)
+@if(ContentParts != null)
+{
+    @foreach (var part in ContentParts)
+    {
+        <div>
+            @if (string.IsNullOrWhiteSpace(part.Content) || string.IsNullOrEmpty(part.Content))
             {
-                <InputText @bind-Value="addArticle.Title" placeholder="Document title"></InputText>
+                <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)" @onkeydown="(e) => KeyDownEvents(e, part)"></div>
             }
             else
             {
-                <InputText @bind-Value="addArticle.Title" placeholder="Document title" disabled></InputText>
+                @if (part.Edit)
+                {
+                    <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)" @onkeydown="(e) => KeyDownEvents(e, part)">@part.Content</div>
+                }
+                else
+                {
+                    <div class="browse-site-content" id="@part.ElementReference" @onclick="() => TurnOnEdit(part.ElementReference, part)">
+                        @((MarkupString)part.ContentHTML)
+                    </div>
+                }
             }
         </div>
-        <div class="form-row form-write-cust-row">
-            @if (pageMode == Mode.Create)
-            {
-                <InputSelect @bind-Value="addArticle.FolderSlug" class="write-folder-select">
-                    <option value="">Select...</option>
-                    @foreach (var item in Folders)
-                        {
-                        <option value="@item.Slug">@item.Name</option>
-                        }
-                </InputSelect>
-            }
-            else
-            {
-                <InputSelect @bind-Value="addArticle.FolderSlug" class="write-folder-select" disabled></InputSelect>
-            }
-        </div>
-        <div class="form-row form-write-cust-row">
-            <InputTextArea @bind-Value="addArticle.Content" class="write-content"></InputTextArea>
-        </div>
-        <div class="form-row add-folder-submit">
-            @if (pageMode == Mode.Create)
-            {
-                <button class="btn btn-submit" type="submit">Create article</button>
-            }
-            else
-            {
-                <button class="btn btn-submit" type="submit">Change article</button>
-            }
-        </div>
-    </EditForm>
-</div>
+    }
+}
