@@ -242,6 +242,8 @@ ol {
     margin-right: 30px;
     margin-bottom: 12px;
     white-space: pre;
+    font-family: monospace;
+    overflow: scroll;
 }
 
 /*

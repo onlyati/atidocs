@@ -1,10 +1,12 @@
 ﻿using AtiDocs.DataModel;
+using AtiDocs.Model;
 using Markdig;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ToastNotify.Model;
 
@@ -25,8 +27,14 @@ namespace AtiDocs.Pages
             if (folderSlug != null && articleSlug != null)
             {
                 content = await DbHandler.GetArticle(folderSlug, articleSlug);
-                var pipe = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-                contentHtml = Markdown.ToHtml(content.Content, pipe);
+
+                var list = JsonSerializer.Deserialize<List<ContentPartItem>>(content.Content);
+                contentHtml = "";
+                foreach (var item in list)
+                {
+                    contentHtml += item.ContentHTML;
+                }
+
                 StateHasChanged();
             }
         }

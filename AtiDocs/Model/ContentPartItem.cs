@@ -13,14 +13,14 @@ namespace AtiDocs.Model
         [JsonPropertyName("content")]
         public string Content { get; set; }
 
-        [JsonIgnore]
+        [JsonPropertyName("contentHTML")]
         public string ContentHTML { get; set; }
 
         [JsonIgnore]
         public bool Edit { get; set; } = true;
 
         [JsonIgnore]
-        public string ElementReference { get; set; }
+        public string ElementReference { get; set; } = Guid.NewGuid().ToString();
 
         [JsonIgnore]
         public System.Timers.Timer FocusTimer { get; set; }

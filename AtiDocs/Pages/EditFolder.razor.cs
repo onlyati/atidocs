@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AtiDocs.DataModel;
+using AtiDocs.Model;
 
 namespace AtiDocs.Pages
 {
@@ -212,28 +213,12 @@ namespace AtiDocs.Pages
             StateHasChanged();
         }
 
+        private void AddArticle(string folderSlug) => NavManager.NavigateTo($"/w/{folderSlug}");
+
         private enum PopuMode
         {
             Add,
             Rename
-        }
-
-        private class FolderTableItem
-        {
-            public Folder Folder { get; set; }
-
-            public bool Display { get; set; } = false;
-
-            public List<ArticleTableItem> ArticleList { get; set; } = new();
-
-            public bool DisplayDocs { get; set; } = false;
-        }
-
-        private class ArticleTableItem
-        {
-            public Article Article { get; set; } = new();
-
-            public bool Display { get; set; } = false;
         }
 
         private class MoveModel

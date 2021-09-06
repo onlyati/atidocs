@@ -81,8 +81,9 @@
             <p @onclick="() => LoadArticles(item)" class="list-box-title">@item.Folder.Name</p>
             @if (item.Display)
             {
-                <a class="inline-link inline-link-info" @onclick="() => DisplayPopup(PopuMode.Rename, item.Folder.Name, item.Folder.Slug)">Rename</a>
-                <a class="inline-link inline-link-verify" @onclick="() => DeleteFolder(item.Folder.Slug)">Delete</a>
+                <a class="inline-link inline-link-info" @onclick="() => AddArticle(item.Folder.Slug)">Add document</a>
+                <a class="inline-link inline-link-info" @onclick="() => DisplayPopup(PopuMode.Rename, item.Folder.Name, item.Folder.Slug)">Rename folder</a>
+                <a class="inline-link inline-link-verify" @onclick="() => DeleteFolder(item.Folder.Slug)">Delete folder</a>
             }
             </p>
             @if (item.DisplayDocs == true)

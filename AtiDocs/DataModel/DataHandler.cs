@@ -165,6 +165,13 @@ namespace AtiDocs.DataModel
         {
             (bool Status, string Message) retValue = new();
 
+            if(title == null || content == null || folderNameSlug == null)
+            {
+                retValue.Status = false;
+                retValue.Message = "Either title or content or folder cannot be null!";
+                return retValue;
+            }
+
             Article post = new();
 
             post.Content = content;

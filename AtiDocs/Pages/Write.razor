@@ -1,4 +1,4 @@
-﻿@page "/w"
+﻿@page "/w/{folderSlug}"
 @page "/w/{folderSlug}/{articleSlug}"
 
 @if (string.IsNullOrEmpty(DocTitle) || string.IsNullOrWhiteSpace(DocTitle))
@@ -17,17 +17,17 @@ else
         <div>
             @if (string.IsNullOrWhiteSpace(part.Content) || string.IsNullOrEmpty(part.Content))
             {
-                <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)" @onkeydown="(e) => KeyDownEvents(e, part)"></div>
+                <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)"></div>
             }
             else
             {
                 @if (part.Edit)
                 {
-                    <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)" @onkeydown="(e) => KeyDownEvents(e, part)">@part.Content</div>
+                    <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)"></div>
                 }
                 else
                 {
-                    <div class="browse-site-content" id="@part.ElementReference" @onclick="() => TurnOnEdit(part.ElementReference, part)">
+                    <div class="browse-site-content" id="@part.ElementReference" @onclick="() => TurnOnEdit(part)">
                         @((MarkupString)part.ContentHTML)
                     </div>
                 }

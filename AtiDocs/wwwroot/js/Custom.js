@@ -1,6 +1,16 @@
-﻿function GetText(element) {
+﻿// Reference for Write class
+var objRef;
+
+function GetText(element) {
     elem = document.getElementById(element);
+    if (elem == null)
+        return null;
     return elem.innerText;
+}
+
+function PutText(element, text) {
+    elem = document.getElementById(element);
+    elem.innerText = text;
 }
 
 function ClearText(element) {
@@ -10,10 +20,78 @@ function ClearText(element) {
 
 function EditResume(element, content) {
     elem = document.getElementById(element);
-    elem.innerHTML = content;
-    console.log(elem.innerHTML);
+    elem.innerText = content;
+    elem.addEventListener('keydown', handleEnter);
+    //console.log("Register: " + elem.id);
+    //console.log("Edit: " + elem.id);
 }
 
 function SetFocus(element) {
     document.getElementById(element).focus();
+}
+
+function RegisterObject(obj) {
+    //console.log("Registered: " + obj)
+    objRef = obj;
+}
+
+function RegisterEvent(element) {
+    elem = document.getElementById(element);
+    elem.addEventListener('keydown', handleEnter);
+    elem.addEventListener('keydown', handleSave);
+    //console.log("Register: " + elem.id);
+}
+
+function RegisterEventForPage() {
+    document.addEventListener('keydown', handleSave);
+}
+
+function UnregisterEvent(element) {
+    elem = document.getElementById(element);
+    elem.removeEventListener('keydown', handleEnter);
+    elem.removeEventListener('keydown', handleSave);
+    //console.log("Unregister: " + elem.id);
+}
+
+function UnregisterEventForPage() {
+    document.removeEventListener('keydown', handleSave);
+}
+
+function handleEnter(evt) {
+    // If Shift+Enter is pressed add new block
+    if (evt.keyCode == 13 && evt.shiftKey) {
+        //.log("Prevented combination");
+        evt.preventDefault();
+        objRef.invokeMethodAsync("AddNewBlock", this.id);
+    }
+
+    // If Shift+Del is pressed delete the current block
+    if (evt.keyCode == 46 && evt.shiftKey) {
+        //console.log("Block deleted");
+        evt.preventDefault();
+        objRef.invokeMethodAsync("DeleteBlock", this.id);
+    }
+
+    // If Ctrl+S is pressed save the document
+    if (evt.keyCode == 83 && evt.ctrlKey) {
+        elem = document.getElementById(this.id);
+        if (elem != null) {
+            elem.blur();
+        }
+        evt.preventDefault();
+    }
+}
+
+function handleSave(evt) {
+    // If Ctrl+S is pressed save the document
+    if (evt.keyCode == 83 && evt.ctrlKey) {
+        if(this.id != null) {
+            elem = document.getElementById(this.id);
+            if (elem != null) {
+                elem.blur();
+            }
+        }
+        evt.preventDefault();
+        objRef.invokeMethodAsync("SaveContent", this.id, "save");
+    }
 }
