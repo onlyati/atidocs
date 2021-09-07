@@ -1,5 +1,16 @@
 ﻿@page "/b/{folderSlug}/{articleSlug}"
 
+<div class="header-bar" id="header-bar-bar">
+    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
+        <img src="icons/back_button_white.png" width="48" height="48" alt="back_icon" />
+    </div>
+    <div class="header-bar-title" id="header-bar-bar-title">
+        @if (content?.Title != null)
+        {
+            @content.Title
+        }
+    </div>
+</div>
 
 <h1>@content?.Title</h1>
 

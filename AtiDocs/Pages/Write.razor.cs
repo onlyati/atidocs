@@ -48,6 +48,7 @@ namespace AtiDocs.Pages
                 var objRef = DotNetObjectReference.Create(this);
                 await js.InvokeVoidAsync("RegisterObject", objRef);
                 await js.InvokeVoidAsync("RegisterEventForPage");
+                await js.InvokeVoidAsync("RegisterScroll");
 
                 if (ContentParts.Count == 1)
                 {
@@ -70,6 +71,7 @@ namespace AtiDocs.Pages
         public void Dispose()
         {
             js.InvokeVoidAsync("UnregisterEventForPage");
+            js.InvokeVoidAsync("UnregisterScroll");
         }
 
         [JSInvokableAttribute("SaveArticle")]

@@ -12,7 +12,7 @@ using ToastNotify.Model;
 
 namespace AtiDocs.Pages
 {
-    public partial class Browse : ComponentBase
+    public partial class Browse : ComponentBase, IDisposable
     {
         [Parameter]
         public string folderSlug { get; set; } = null;
@@ -37,6 +37,19 @@ namespace AtiDocs.Pages
 
                 StateHasChanged();
             }
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(firstRender)
+            {
+                await js.InvokeVoidAsync("RegisterScroll");
+            }
+        }
+
+        public void Dispose()
+        {
+            js.InvokeVoidAsync("UnregisterScroll");
         }
     }
 }

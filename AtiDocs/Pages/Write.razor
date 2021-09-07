@@ -1,6 +1,21 @@
 ﻿@page "/w/{folderSlug}"
 @page "/w/{folderSlug}/{articleSlug}"
 
+<div class="header-bar" id="header-bar-bar">
+    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
+        <img src="icons/back_button_white.png" width="48" height="48" alt="back_icon" />
+    </div>
+    <div class="header-bar-title" id="header-bar-bar-title">
+        @if(DocTitle != null)
+        {
+            @DocTitle
+        }
+    </div>
+    <div class="header-bar-save" @onclick="SaveArticle">
+        <img src="icons/save_icon_white.png" width="48" height="48" alt="save_icon" />
+    </div>
+</div>
+
 @if (string.IsNullOrEmpty(DocTitle) || string.IsNullOrWhiteSpace(DocTitle))
 {
     <h1 contenteditable="true" id="write-doc-title" class="placeholder-text" onclick="javascript:ClearText(this.id)" @onfocusout="SaveTitle">Write title here</h1>

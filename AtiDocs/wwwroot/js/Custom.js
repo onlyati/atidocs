@@ -2,6 +2,10 @@
 var objRef;
 var saved = false;
 
+function Log(message) {
+    console.log(message);
+}
+
 function GetText(element) {
     elem = document.getElementById(element);
     if (elem == null)
@@ -105,4 +109,31 @@ function handleSave(evt) {
 
 function clearSave(evt) {
     saved = false;
+}
+
+function RegisterScroll() {
+    window.onscroll = function() { handleScroll() };
+}
+
+function UnregisterScroll() {
+    window.onscroll = null;
+}
+
+function handleScroll() {
+    elem = document.getElementById("header-bar-bar");
+    if (elem == null)
+        return;
+
+    title = document.getElementById("header-bar-bar-title");
+
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        elem.style.position = "fixed";
+        elem.style.top = "0";
+        title.style.visibility = "visible";
+    }
+    else {
+        elem.style.position = "relative";
+        elem.style.top = "0";
+        title.style.visibility = "hidden";
+    }
 }

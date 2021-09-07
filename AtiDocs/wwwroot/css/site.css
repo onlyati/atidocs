@@ -8,6 +8,49 @@ code {
     font-weight: normal;
 }
 
+/* Header bar */
+.header-bar {
+    display: grid;
+    grid-template-areas: "header-bar-back header-bar-title header-bar-save";
+    align-items: stretch;
+    height: 64px;
+    background-color: #dfdeff;
+    width: 1140px;
+}
+
+.header-bar-back,
+.header-bar-save {
+    background-color: #04009A;
+    color: white;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+
+.header-bar-back {
+    grid-area: header-bar-back;
+}
+
+.header-bar-title {
+    grid-area: header-bar-title;
+    width: auto;
+    font-size: 200%;
+    text-align: center;
+    margin-bottom: 16px;
+    visibility: hidden;
+}
+
+.header-bar-save {
+    grid-area: header-bar-save;
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+    .header-bar-back img,
+    .header-bar-save img {
+        margin: 8px;
+    }
+
 /* Lists */
 ul,
 ol {
