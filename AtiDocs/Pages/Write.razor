@@ -7,10 +7,18 @@
 }
 else
 {
-    <h1 contenteditable="true" id="write-doc-title" @onfocusout="SaveTitle">@DocTitle</h1>
+    @if (articleSlug == null)
+    {
+        <h1 contenteditable="true" id="write-doc-title" @onfocusout="SaveTitle">@DocTitle</h1>
+    }
+    else
+    {
+        <h1>@DocTitle</h1>
+    }
+
 }
 
-@if(ContentParts != null)
+@if (ContentParts != null)
 {
     @foreach (var part in ContentParts)
     {

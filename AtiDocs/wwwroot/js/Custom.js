@@ -1,5 +1,6 @@
 ﻿// Reference for Write class
 var objRef;
+var saved = false;
 
 function GetText(element) {
     elem = document.getElementById(element);
@@ -22,6 +23,7 @@ function EditResume(element, content) {
     elem = document.getElementById(element);
     elem.innerText = content;
     elem.addEventListener('keydown', handleEnter);
+    elem.addEventListener('keyup', clearSave);
     //console.log("Register: " + elem.id);
     //console.log("Edit: " + elem.id);
 }
@@ -39,22 +41,26 @@ function RegisterEvent(element) {
     elem = document.getElementById(element);
     elem.addEventListener('keydown', handleEnter);
     elem.addEventListener('keydown', handleSave);
+    elem.addEventListener('keyup', clearSave);
     //console.log("Register: " + elem.id);
 }
 
 function RegisterEventForPage() {
     document.addEventListener('keydown', handleSave);
+    document.addEventListener('keyup', clearSave);
 }
 
 function UnregisterEvent(element) {
     elem = document.getElementById(element);
     elem.removeEventListener('keydown', handleEnter);
     elem.removeEventListener('keydown', handleSave);
+    elem.addEventListener('keyup', clearSave);
     //console.log("Unregister: " + elem.id);
 }
 
 function UnregisterEventForPage() {
     document.removeEventListener('keydown', handleSave);
+    document.addEventListener('keyup', clearSave);
 }
 
 function handleEnter(evt) {
@@ -84,7 +90,8 @@ function handleEnter(evt) {
 
 function handleSave(evt) {
     // If Ctrl+S is pressed save the document
-    if (evt.keyCode == 83 && evt.ctrlKey) {
+    if (evt.keyCode == 83 && evt.ctrlKey && saved == false) {
+        saved = true;
         if(this.id != null) {
             elem = document.getElementById(this.id);
             if (elem != null) {
@@ -94,4 +101,8 @@ function handleSave(evt) {
         evt.preventDefault();
         objRef.invokeMethodAsync("SaveContent", this.id, "save");
     }
+}
+
+function clearSave(evt) {
+    saved = false;
 }
