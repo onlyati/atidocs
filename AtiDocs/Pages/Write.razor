@@ -2,17 +2,25 @@
 @page "/w/{folderSlug}/{articleSlug}"
 
 <div class="header-bar" id="header-bar-bar">
-    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
-        <img src="icons/back_button_white.png" width="48" height="48" alt="back_icon" />
+    <div class="header-bar-logo">
+        <img src="img/Web_Logo_purple.png" alt="onlyati_logo" />
+    </div>
+    <div class="header-bar-brandname" id="header-brandname">
+        <span>OnlyAti Services</span>
     </div>
     <div class="header-bar-title" id="header-bar-bar-title">
-        @if(DocTitle != null)
+        @if (DocTitle != null)
         {
-            @DocTitle
+            <span>@DocTitle</span>
         }
+    </div>
+    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
+        <img src="icons/error_sign_white.png" width="48" height="48" alt="back_icon" />
+        <p>Close</p>
     </div>
     <div class="header-bar-save" @onclick="SaveArticle">
         <img src="icons/save_icon_white.png" width="48" height="48" alt="save_icon" />
+        <p>Save</p>
     </div>
 </div>
 

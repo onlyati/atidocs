@@ -126,15 +126,25 @@ function handleScroll() {
 
     title = document.getElementById("header-bar-bar-title");
 
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    brandName = document.getElementById("header-brandname");
+
+    if (document.body.scrollTop > 155 || document.documentElement.scrollTop > 155) {
         elem.style.position = "fixed";
         elem.style.top = "0";
         title.style.visibility = "visible";
+        if (brandName != null) {
+            brandName.style.width = "0";
+            brandName.style.height = "0";
+        }
     }
     else {
         elem.style.position = "relative";
         elem.style.top = "0";
         title.style.visibility = "hidden";
+        if (brandName != null) {
+            brandName.style.width = "max-content";
+            brandName.style.height = "auto";
+        }
     }
 }
 

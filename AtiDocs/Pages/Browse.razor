@@ -1,14 +1,21 @@
 ﻿@page "/b/{folderSlug}/{articleSlug}"
 
 <div class="header-bar" id="header-bar-bar">
-    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
-        <img src="icons/back_button_white.png" width="48" height="48" alt="back_icon" />
+    <div class="header-bar-logo">
+        <img src="img/Web_Logo_purple.png" alt="onlyati_logo" />
+    </div>
+    <div class="header-bar-brandname" id="header-brandname">
+        <span>OnlyAti Services</span>
     </div>
     <div class="header-bar-title" id="header-bar-bar-title">
         @if (content?.Title != null)
         {
-            @content.Title
+            <span>@content.Title</span>
         }
+    </div>
+    <div class="header-bar-back" @onclick="@(() => NavManager.NavigateTo("/"))">
+        <img src="icons/error_sign_white.png" alt="back_icon" />
+        <p>Close</p>
     </div>
 </div>
 
