@@ -11,5 +11,7 @@ namespace AtiDocs.Model
         public Article Article { get; set; } = new();
 
         public bool Display { get; set; } = false;
+
+        public string ElementReference { get; set; } = Guid.NewGuid().ToString();
     }
 }

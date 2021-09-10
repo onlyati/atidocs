@@ -77,29 +77,27 @@
     {
         @foreach (var item in FolderList)
         {
-            <p class="show-folder-icon folder-list-box-item" @onmouseover="() => item.Display = true" @onmouseout="() => item.Display = false">
-            <p @onclick="() => LoadArticles(item)" class="list-box-title">@item.Folder.Name</p>
-            @if (item.Display)
-            {
-                <a class="inline-link inline-link-info" @onclick="() => AddArticle(item.Folder.Slug)">Add document</a>
-                <a class="inline-link inline-link-info" @onclick="() => DisplayPopup(PopuMode.Rename, item.Folder.Name, item.Folder.Slug)">Rename folder</a>
-                <a class="inline-link inline-link-verify" @onclick="() => DeleteFolder(item.Folder.Slug)">Delete folder</a>
-            }
+            <p class="show-folder-icon folder-list-box-item" onmouseover="ShowItem(@("\"" + item.ElementReference + "\""))" onmouseout="HideItem(@("\"" + item.ElementReference + "\""))">
+                <p @onclick="() => LoadArticles(item)" class="list-box-title">@item.Folder.Name</p>
+                <div class="hide-inline-item" id="@item.ElementReference">
+                    <a class="inline-link inline-link-info" @onclick="() => AddArticle(item.Folder.Slug)">Add document</a>
+                    <a class="inline-link inline-link-info" @onclick="() => DisplayPopup(PopuMode.Rename, item.Folder.Name, item.Folder.Slug)">Rename folder</a>
+                    <a class="inline-link inline-link-verify" @onclick="() => DeleteFolder(item.Folder.Slug)">Delete folder</a>
+                </div>
             </p>
             @if (item.DisplayDocs == true)
             {
                 <p class="document-list-box-item"><i>Total number of documents: @item.ArticleList.Count</i></p>
                 @foreach (var article in item.ArticleList)
                 {
-                    <p class="show-doc-icon document-list-box-item" @onmouseover="() => article.Display = true" @onmouseout="() => article.Display = false">
-                    <p @onclick="() => OpenArticle(item.Folder.Slug, article.Article.Slug)" class="list-box-title">@article.Article.Title</p>
-                    @if (article.Display)
-                    {
-                        <a class="inline-link inline-link-info" @onclick="() => EditArticle(item.Folder.Slug, article.Article.Slug)">Edit</a>
-                        <a class="inline-link inline-link-info" @onclick="() => DisplayMove(item.Folder.Slug, article.Article.Slug)">Move</a>
-                        <a class="inline-link inline-link-info" @onclick="() => DisplayRename(item.Folder.Slug, article.Article.Slug)">Rename</a>
-                        <a class="inline-link inline-link-verify" @onclick="() => DeleteDoc(item.Folder.Slug, article.Article.Slug)">Delete</a>
-                    }
+                    <p class="show-doc-icon document-list-box-item" onmouseover="ShowItem(@("\"" + article.ElementReference + "\""))" onmouseout="HideItem(@("\"" + article.ElementReference + "\""))">
+                        <p @onclick="() => OpenArticle(item.Folder.Slug, article.Article.Slug)" class="list-box-title">@article.Article.Title</p>
+                        <div class="hide-inline-item" id="@article.ElementReference">
+                            <a class="inline-link inline-link-info" @onclick="() => EditArticle(item.Folder.Slug, article.Article.Slug)">Edit</a>
+                            <a class="inline-link inline-link-info" @onclick="() => DisplayMove(item.Folder.Slug, article.Article.Slug)">Move</a>
+                            <a class="inline-link inline-link-info" @onclick="() => DisplayRename(item.Folder.Slug, article.Article.Slug)">Rename</a>
+                            <a class="inline-link inline-link-verify" @onclick="() => DeleteDoc(item.Folder.Slug, article.Article.Slug)">Delete</a>
+                        </div>
                     </p>
                 }
             }

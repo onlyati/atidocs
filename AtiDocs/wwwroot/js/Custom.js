@@ -137,3 +137,13 @@ function handleScroll() {
         title.style.visibility = "hidden";
     }
 }
+
+function ShowItem(element) {
+    elem = document.getElementById(element);
+    elem.style.visibility = "visible";
+}
+
+function HideItem(element) {
+    elem = document.getElementById(element);
+    elem.style.visibility = "hidden";
+}

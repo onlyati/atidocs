@@ -234,11 +234,15 @@ ol {
     display: inline-block;
 }
 
+.hide-inline-item {
+    display: inline;
+    visibility: hidden;
+}
+
 /*
     Write document styles
     ---------------------
 */
-
 .form-write-cust {
     margin-left: 30px;
     margin-right: 30px;
