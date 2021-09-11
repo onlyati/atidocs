@@ -48,12 +48,30 @@ else
         <div>
             @if (string.IsNullOrWhiteSpace(part.Content) || string.IsNullOrEmpty(part.Content))
             {
+                <div class="edit-form-box">
+                    <div class="edit-form-add" @onclick="() => AddNewBlock(part.ElementReference)">
+                        <span>New block</span>
+                    </div>
+                    <div class="edit-form-placeholder"></div>
+                    <div class="edit-form-remove" @onclick="() => DeleteBlock(part.ElementReference)">
+                        <span>Delete</span>
+                    </div>
+                </div>
                 <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)"></div>
             }
             else
             {
                 @if (part.Edit)
                 {
+                    <div class="edit-form-box">
+                        <div class="edit-form-add" @onclick="() => AddNewBlock(part.ElementReference)">
+                            <span>New block</span>
+                        </div>
+                        <div class="edit-form-placeholder"></div>
+                        <div class="edit-form-remove" @onclick="() => DeleteBlock(part.ElementReference)">
+                            <span>Delete</span>
+                        </div>
+                    </div>
                     <div contenteditable="true" class="edit-element" id="@part.ElementReference" @onfocusout="() => SaveContent(part.ElementReference)"></div>
                 }
                 else

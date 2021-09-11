@@ -8,6 +8,23 @@ code {
     font-weight: normal;
 }
 
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
+.doc-img {
+    display: block;
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .doc-img {
+        max-width: 100%;
+    }
+}
+
 /* Header bar */
 .header-bar {
     display: inline-grid;
@@ -18,11 +35,25 @@ code {
     width: 1140px;
 }
 
+@media screen and (max-width: 1140px) {
+    .header-bar {
+        width: 100%;
+    }
+}
+
 .header-bar-brandname {
     grid-area: header-bar-brandname;
     width: max-content;
     overflow: hidden;
     height: auto;
+}
+
+@media screen and (max-width: 1140px) {
+    .header-bar-brandname {
+        width: 0;
+        height: 0;
+        visibility: collapse;
+    }
 }
 
     .header-bar-brandname span {
@@ -334,6 +365,37 @@ ol {
     font-family: monospace;
     overflow: scroll;
 }
+
+.edit-form-box {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    align-items: center;
+    width: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    background-color: #f0f0f0;
+}
+
+.edit-form-add {
+    background-color: #dedede;
+    cursor: pointer;
+}
+
+.edit-form-placeholder {
+    width: auto;
+}
+
+.edit-form-remove {
+    background-color: #D8000C;
+    color: white;
+    cursor: pointer;
+}
+
+    .edit-form-add span,
+    .edit-form-remove span {
+        display: inline-block;
+        margin: 7px 10px;
+    }
 
 /*
     Browse site style

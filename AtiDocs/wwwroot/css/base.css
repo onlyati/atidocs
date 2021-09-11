@@ -352,6 +352,13 @@ header {
     padding-bottom: 20px;
 }
 
+@media screen and (max-width: 1140px) {
+    .main-content {
+        width: 100%;
+        margin: 0;
+    }
+}
+
 /*
  * Response boxes
  * --------------

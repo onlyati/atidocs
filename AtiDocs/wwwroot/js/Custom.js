@@ -43,6 +43,10 @@ function RegisterObject(obj) {
 
 function RegisterEvent(element) {
     elem = document.getElementById(element);
+    if (elem == null) {
+        setTimeout(function () { RegisterEvent(element) }, 100);
+        return;
+    }
     elem.addEventListener('keydown', handleEnter);
     elem.addEventListener('keydown', handleSave);
     elem.addEventListener('keyup', clearSave);
@@ -142,8 +146,16 @@ function handleScroll() {
         elem.style.top = "0";
         title.style.visibility = "hidden";
         if (brandName != null) {
-            brandName.style.width = "max-content";
-            brandName.style.height = "auto";
+            if (document.width > 1140) {
+                brandName.style.width = "max-content";
+                brandName.style.height = "auto";
+            }
+            else {
+                brandName.style.width = "0";
+                brandName.style.width = "0";
+                brandName.style.visibility = "collapse";
+            }
+            
         }
     }
 }
@@ -155,5 +167,5 @@ function ShowItem(element) {
 
 function HideItem(element) {
     elem = document.getElementById(element);
-    elem.style.visibility = "hidden";
+    elem.style.visibility = "collapse";
 }
