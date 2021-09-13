@@ -33,6 +33,7 @@ code {
     background-color: #dfdeff;
     align-items: center;
     width: 1140px;
+    z-index: 9001;
 }
 
 @media screen and (max-width: 1140px) {
