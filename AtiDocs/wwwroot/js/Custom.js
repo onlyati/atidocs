@@ -129,13 +129,17 @@ function handleScroll() {
         return;
 
     title = document.getElementById("header-bar-bar-title");
-
     brandName = document.getElementById("header-brandname");
+    main = document.getElementById("main-content-id");
+
+    var mainTopDefault = 30;
+    var extendedTop = parseInt(mainTopDefault) + parseInt(elem.offsetHeight);
 
     if (document.body.scrollTop > 155 || document.documentElement.scrollTop > 155) {
         elem.style.position = "fixed";
         elem.style.top = "0";
         title.style.visibility = "visible";
+        main.style.marginTop = extendedTop + "px";
         if (brandName != null) {
             brandName.style.width = "0";
             brandName.style.height = "0";
@@ -145,8 +149,9 @@ function handleScroll() {
         elem.style.position = "relative";
         elem.style.top = "0";
         title.style.visibility = "hidden";
+        main.style.marginTop = "";
         if (brandName != null) {
-            if (document.width > 1140) {
+            if (main.offsetWidth >= 1140) {
                 brandName.style.width = "max-content";
                 brandName.style.height = "auto";
             }

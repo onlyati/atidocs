@@ -130,6 +130,8 @@ namespace AtiDocs.Pages
         [JSInvokableAttribute("SaveContent")]
         public async Task SaveContent(string reference, string needSave = null)
         {
+            System.Threading.Thread.Sleep(250);
+
             var text = await js.InvokeAsync<string>("GetText", reference);
             if (text == null)
             {
